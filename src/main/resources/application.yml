@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: rag-engine
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/ragdb
+    username: raguser
+    password: ragpassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+rag:
+  chunking:
+    chunk-size: 1000
+    chunk-overlap: 150
+  embedding:
+    base-url: http://localhost:11434
+    model: nomic-embed-text
+    dimensions: 768
+  chat:
+    model: qwen2.5:3b
+  retrieval:
+    max-cosine-distance: 0.48
+    default-limit: 3
+    max-limit: 20
